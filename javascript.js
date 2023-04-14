@@ -20,10 +20,18 @@ const button = document.querySelector('button');
 let columnNum;
 let rowNum;
 
-function getSize() {
-    columnNum = prompt("Enter sketch pad's column number: ");
-    rowNum = prompt("Enter sketch pad's row number: ");
+function getColumNum() {
+    do {
+        columnNum = prompt("Enter sketch pad's column number (1-100): ");
+    }   while (isNaN(columnNum) || columnNum > 100);    
 };
+
+function getRowNum() {
+    do {
+        rowNum = prompt("Enter sketch pad's row number (1-100): ");
+    }   while (isNaN(rowNum) || rowNum > 100);
+};
+
 
 //trigger event once button is clicked
 button.addEventListener('click',newPad);
@@ -35,7 +43,8 @@ function newPad() {
     container.textContent = '';
 
     //get user to enter pad's size
-    getSize();
+    getColumNum();
+    getRowNum();
 
     //implement the number user typed
     for (x = 0; x < (columnNum-1); x++) {
@@ -47,14 +56,14 @@ function newPad() {
         for (i = 0; i < (rowNum-1); i++) {
             //create square elements
             const rows = document.createElement('div');
-            rows.setAttribute('id','squares');
+            rows.setAttribute('id','rows');
             columns.appendChild(rows);
         };
     };
 }
 
 //select the squares
-const squares = document.querySelectorAll('#rows');
+const squares = document.querySelectorAll('#squares');
 
 //change square colour when mouse hovers it
 squares.forEach((square) => {

@@ -6,6 +6,10 @@ body {
     width: 100%;
 }
 
+button {
+    margin-bottom: 20px;
+}
+
 div {
     display: flex;
     flex-direction: row;

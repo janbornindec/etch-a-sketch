@@ -1,6 +1,7 @@
 //select container div on html
 const container = document.querySelector('.container');
 
+//default pad size
 for (x = 0; x < 16; x++) {
     const row = document.createElement('div');
     row.setAttribute('class','row');
@@ -14,21 +15,14 @@ for (x = 0; x < 16; x++) {
 
 };
 
-/*
 const button = document.querySelector('button');
 let columnNum;
 let rowNum;
 
-function getColumNum() {
+function getNum() {
     do {
-        columnNum = prompt("Enter sketch pad's column number (1-100): ");
-    }   while (isNaN(columnNum) || columnNum > 100);    
-};
-
-function getRowNum() {
-    do {
-        rowNum = prompt("Enter sketch pad's row number (1-100): ");
-    }   while (isNaN(rowNum) || rowNum > 100);
+        squareNum = prompt("Enter a number from 1 to 100 for sketch pad's size. E.g. 16 for a 16x16 pad: ");
+    }   while (isNaN(squareNum) || squareNum > 100);    
 };
 
 //trigger event once button is clicked
@@ -41,32 +35,28 @@ function newPad() {
     container.textContent = '';
 
     //get user to enter pad's size
-    getColumNum();
-    getRowNum();
+    getNum()
 
     //implement the number user typed
-    for (x = 0; x < (columnNum-1); x++) {
-        //create 16 columns to hold squares
-        const columns = document.createElement('div');
-        columns.setAttribute('id','columns');
-        container.appendChild(columns);
-
-        for (i = 0; i < (rowNum-1); i++) {
-            //create square elements
-            const rows = document.createElement('div');
-            rows.setAttribute('id','rows');
-            columns.appendChild(rows);
+    for (x = 0; x < squareNum; x++) {
+        const row = document.createElement('div');
+        row.setAttribute('class','row');
+        container.appendChild(row);
+    
+        for (i = 0; i < squareNum; i++) {
+            const squares = document.createElement('div');
+            squares.setAttribute('class','squares');
+            row.appendChild(squares);
         };
+    
     };
-}
-
+}/*
 //select the squares
-const squares = document.querySelectorAll('#squares');
+const squares = document.querySelectorAll('.squares');
 
 //change square colour when mouse hovers it
 squares.forEach((square) => {
     square.addEventListener('mouseover',() => {
         square.style.backgroundColor = 'black';
     });
-});
-*/
+});*/

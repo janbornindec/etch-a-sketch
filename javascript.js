@@ -1,21 +1,20 @@
 //select container div on html
 const container = document.querySelector('.container');
 
-//create default pad
-for (x = 0; x <16; x++) {
-    //create 16 columns to hold squares
-    const columns = document.createElement('div');
-    columns.setAttribute('id','columns');
-    container.appendChild(columns);
+for (x = 0; x < 16; x++) {
+    const row = document.createElement('div');
+    row.setAttribute('class','row');
+    container.appendChild(row);
 
-    for (i = 0; i <16; i++) {
-        //create square elements
+    for (i = 0; i < 16; i++) {
         const squares = document.createElement('div');
-        squares.setAttribute('id','squares');
-        columns.appendChild(squares);
+        squares.setAttribute('class','squares');
+        row.appendChild(squares);
     };
+
 };
 
+/*
 const button = document.querySelector('button');
 let columnNum;
 let rowNum;
@@ -31,7 +30,6 @@ function getRowNum() {
         rowNum = prompt("Enter sketch pad's row number (1-100): ");
     }   while (isNaN(rowNum) || rowNum > 100);
 };
-
 
 //trigger event once button is clicked
 button.addEventListener('click',newPad);
@@ -71,3 +69,4 @@ squares.forEach((square) => {
         square.style.backgroundColor = 'black';
     });
 });
+*/

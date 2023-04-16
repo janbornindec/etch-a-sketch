@@ -1,7 +1,7 @@
 //select container div on html
 const container = document.querySelector('.container');
 
-//default pad size
+//default pad
 for (x = 0; x < 16; x++) {
     const row = document.createElement('div');
     row.setAttribute('class','row');
@@ -12,8 +12,17 @@ for (x = 0; x < 16; x++) {
         squares.setAttribute('class','squares');
         row.appendChild(squares);
     };
-
 };
+
+//select the squares
+const squares = document.querySelectorAll('.squares');
+
+//change square colour when mouse hovers it
+squares.forEach((square) => {
+    square.addEventListener('mouseover',() => {
+        square.style.backgroundColor = 'black'; 
+    });
+});
 
 const button = document.querySelector('button');
 let columnNum;
@@ -50,13 +59,13 @@ function newPad() {
         };
     
     };
-}/*
-//select the squares
-const squares = document.querySelectorAll('.squares');
+    //select the squares
+    const squares = document.querySelectorAll('.squares');
 
-//change square colour when mouse hovers it
-squares.forEach((square) => {
-    square.addEventListener('mouseover',() => {
-        square.style.backgroundColor = 'black';
+    //change square colour when mouse hovers it
+    squares.forEach((square) => {
+        square.addEventListener('mouseover',() => {
+            square.style.backgroundColor = 'black'; 
+        });
     });
-});*/
+};

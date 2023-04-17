@@ -17,10 +17,15 @@ for (x = 0; x < 16; x++) {
 //select the squares
 const squares = document.querySelectorAll('.squares');
 
-//change square colour when mouse hovers it
+//get random color and add blackness to it 
+let getHue = () => Math.floor(Math.random()*361);
+let blackness = 100;
+let color = `hsl(${getHue()},100%,${blackness}%)`
+
+//change square colour when mouse hovers on it
 squares.forEach((square) => {
     square.addEventListener('mouseover',() => {
-        square.style.backgroundColor = 'black'; 
+        square.style.backgroundColor = color;
     });
 });
 

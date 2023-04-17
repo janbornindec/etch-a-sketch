@@ -20,14 +20,16 @@ const squares = document.querySelectorAll('.squares');
 //get random color and add blackness to it 
 let getHue = () => Math.floor(Math.random()*361);
 let blackness = 100;
-let color = `hsl(${getHue()},100%,${blackness}%)`
 
 //change square colour when mouse hovers on it
 squares.forEach((square) => {
     square.addEventListener('mouseover',() => {
-        square.style.backgroundColor = color;
+        blackness -= 10;
+        square.style.backgroundColor = `hsl(${getHue()},100%,${blackness}%)`;
     });
 });
+
+
 
 const button = document.querySelector('button');
 let columnNum;

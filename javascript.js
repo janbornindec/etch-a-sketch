@@ -14,24 +14,6 @@ for (x = 0; x < 16; x++) {
     };
 };
 
-//select the squares
-const squares = document.querySelectorAll('.squares');
-
-//get random color and add blackness to it 
-let getHue = () => Math.floor(Math.random()*361);
-let blackness = 100;
-
-//change square colour when mouse hovers on it
-squares.forEach((square) => {
-    square.addEventListener('mouseover',() => {
-        blackness -= 10;
-        square.style.backgroundColor = `hsl(${getHue()},100%,${blackness}%)`;
-    });
-});
-
-
-
-const button = document.querySelector('button');
 let columnNum;
 let rowNum;
 
@@ -41,8 +23,11 @@ function getNum() {
     }   while (isNaN(squareNum) || squareNum > 100);    
 };
 
+//target newpad button
+const padBtn = document.querySelector('#newpad');
+
 //trigger event once button is clicked
-button.addEventListener('click',newPad);
+padBtn.addEventListener('click',newPad);
 
 //create a new pad according to user's instructed size
 function newPad() {
@@ -66,13 +51,69 @@ function newPad() {
         };
     
     };
+};
+
+//target mono button
+const monoBtn = document.querySelector('#mono');
+
+//create mono function
+function mono() {
     //select the squares
     const squares = document.querySelectorAll('.squares');
 
     //change square colour when mouse hovers it
     squares.forEach((square) => {
         square.addEventListener('mouseover',() => {
-            square.style.backgroundColor = 'black'; 
+                square.style.backgroundColor = 'black'; 
         });
-    });
+    });      
 };
+
+//trigger event once button is clicked
+monoBtn.addEventListener('click',mono);
+
+//target rainbow button
+const rainbowBtn = document.querySelector('#rainbow');
+
+//get random rgb color
+function randomRgb() {
+    let r = Math.floor(Math.random() * 256);
+    let g = Math.floor(Math.random() * 256);
+    let b = Math.floor(Math.random() * 256);
+    return "rgb(" + r + "," + g + "," + b + ")";
+}
+
+//create rainbow function
+function rainbow() {
+    //select the squares
+    const squares = document.querySelectorAll('.squares');
+
+    //change square colour when mouse hovers it
+    squares.forEach((square) => {
+        square.addEventListener('mouseover',() => {
+                square.style.backgroundColor = randomRgb(); 
+        });
+    });    
+};
+
+//trigger event once button is clicked
+rainbowBtn.addEventListener('click',rainbow);
+
+//target erase button
+const eraseBtn = document.querySelector('#erase');
+
+//create erase function
+function erase() {
+    //select the squares
+    const squares = document.querySelectorAll('.squares');
+
+    //change square colour when mouse hovers it
+    squares.forEach((square) => {
+        square.addEventListener('mouseover',() => {
+            square.style.backgroundColor = 'white'; 
+        });
+    });    
+};
+
+//trigger event once button is clicked
+eraseBtn.addEventListener('click',erase);

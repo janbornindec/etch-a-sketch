@@ -1,5 +1,6 @@
 //select container div on html
 const container = document.querySelector('.container');
+const modeButtons = document.querySelectorAll('.modes')
 
 //generate default pad
 
@@ -27,14 +28,15 @@ function getNum() {
     }   while (isNaN(squareNum) || squareNum > 100);    
 };
 
-//generate new pad
-const newPad = document.querySelector('.pad');
-newPad.addEventListener('click',generatePad);
-
 function generatePad() {
 
     //clear previous pad
     container.textContent = '';
+
+    //clear mode
+    modeButtons.forEach((button) => {
+        button.classList.remove('active-button');
+    });
 
     //get user to enter pad's size
     getNum()
@@ -52,9 +54,14 @@ function generatePad() {
         };
     };
 
+    //set to classic mode by default
     startMode('classic');
     changeMode();
 };
+
+//generate new pad if button clicked
+const newPad = document.querySelector('.pad');
+newPad.addEventListener('click',generatePad);
 
 //get random rgb color
 function randomRgb() {
@@ -90,7 +97,6 @@ function startMode(mode) {
 };
 
 //use selected buttons to change paint colour and button color
-const modeButtons = document.querySelectorAll('.modes')
 
 function selectButton(button) {
     modeButtons.forEach((button) => {

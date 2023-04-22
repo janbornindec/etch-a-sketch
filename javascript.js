@@ -1,19 +1,23 @@
 //select container div on html
 const container = document.querySelector('.container');
 
-//default pad
-for (x = 0; x < 16; x++) {
-    const row = document.createElement('div');
-    row.setAttribute('class','row');
-    container.appendChild(row);
+//generate default pad
 
-    for (i = 0; i < 16; i++) {
-        const squares = document.createElement('div');
-        squares.setAttribute('class','squares');
-        row.appendChild(squares);
+function generateGrid() {
+    for (x = 0; x < 16; x++) {
+        const row = document.createElement('div');
+        row.setAttribute('class','row');
+        container.appendChild(row);
+    
+        for (i = 0; i < 16; i++) {
+            const squares = document.createElement('div');
+            squares.setAttribute('class','squares');
+            row.appendChild(squares);
+        };
     };
 };
 
+//prompt user to input pad size
 let columnNum;
 let rowNum;
 
@@ -23,14 +27,11 @@ function getNum() {
     }   while (isNaN(squareNum) || squareNum > 100);    
 };
 
-//target newpad button
-const padBtn = document.querySelector('#newpad');
+//generate new pad
+const newPad = document.querySelector('.pad');
+newPad.addEventListener('click',generatePad);
 
-//trigger event once button is clicked
-padBtn.addEventListener('click',newPad);
-
-//create a new pad according to user's instructed size
-function newPad() {
+function generatePad() {
 
     //clear previous pad
     container.textContent = '';
@@ -49,31 +50,12 @@ function newPad() {
             squares.setAttribute('class','squares');
             row.appendChild(squares);
         };
-    
     };
+
+    startMode('classic');
+    changeMode();
+    eraseListener();
 };
-
-//target mono button
-const monoBtn = document.querySelector('#mono');
-
-//create mono function
-function mono() {
-    //select the squares
-    const squares = document.querySelectorAll('.squares');
-
-    //change square colour when mouse hovers it
-    squares.forEach((square) => {
-        square.addEventListener('mouseover',() => {
-                square.style.backgroundColor = 'black'; 
-        });
-    });      
-};
-
-//trigger event once button is clicked
-monoBtn.addEventListener('click',mono);
-
-//target rainbow button
-const rainbowBtn = document.querySelector('#rainbow');
 
 //get random rgb color
 function randomRgb() {
@@ -83,37 +65,75 @@ function randomRgb() {
     return "rgb(" + r + "," + g + "," + b + ")";
 }
 
-//create rainbow function
-function rainbow() {
-    //select the squares
+//start painting in the chosen mode
+function startMode(mode) {
     const squares = document.querySelectorAll('.squares');
 
-    //change square colour when mouse hovers it
     squares.forEach((square) => {
-        square.addEventListener('mouseover',() => {
-                square.style.backgroundColor = randomRgb(); 
+        const item = square;
+        item.count = 0;
+        item.addEventListener('mouseover',(e) => {
+            if (mode === 'classic') {
+                e.target.style.backgroundColor = 'rgb(50,50,50)'; 
+                e.target.count += 1;
+                e.target.style.opacity = 0.2 * e.target.count;
+            } else if (mode === 'mono'){
+                e.target.style.backgroundColor = 'rgb(50,50,50)'; 
+                e.target.style.opacity = 1;
+            } else if (mode === 'disco') {
+                e.target.style.backgroundColor = randomRgb(); 
+                e.target.style.opacity = 1;
+            };
         });
-    });    
+    });
 };
 
-//trigger event once button is clicked
-rainbowBtn.addEventListener('click',rainbow);
+//use selected buttons to trigger colour mode
+const modeButtons = document.querySelectorAll('.modes')
 
-//target erase button
-const eraseBtn = document.querySelector('#erase');
+function changeMode() {
+    modeButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+            if (button.classList.contains('classic')) {
+                startMode('classic');
+            } else if (button.classList.contains('mono')) {
+                startMode('mono');
+            } else if (button.classList.contains('disco')) {
+                startMode('disco');
+            };
+        });
+    });
+};
 
-//create erase function
+
+//erase function
 function erase() {
-    //select the squares
     const squares = document.querySelectorAll('.squares');
 
-    //change square colour when mouse hovers it
     squares.forEach((square) => {
-        square.addEventListener('mouseover',() => {
-            square.style.backgroundColor = 'white'; 
+        const item = square;
+        item.addEventListener('mouseover',(e) => {
+            e.target.count = 0;
+            e.target.style.backgroundColor = 'rgb(255,255,255)';
+            e.target.count = 0;
+            e.target.style.opacity = 1;
         });
-    });    
+    });
+};  
+
+//click erase button to trigger func
+function eraseListener() {
+    const eraseBtn = document.querySelector('.erase')
+    eraseBtn.addEventListener('click',erase);
 };
 
-//trigger event once button is clicked
-eraseBtn.addEventListener('click',erase);
+//display when page loads
+function displayOn() {
+    generateGrid();
+    startMode('classic');
+    changeMode();
+    eraseListener();
+};
+
+//default display on 
+displayOn();

@@ -97,11 +97,13 @@ function startMode(mode) {
     });
 };
 
+//trigger blankPad func
 function blankListener() {
     const blank = document.querySelector('.blank');
     blank.addEventListener('click',blankPad);
 };
 
+//wipe out all colours on pad
 function blankPad() {
     const squares = document.querySelectorAll('.squares');
     squares.forEach((square) => {

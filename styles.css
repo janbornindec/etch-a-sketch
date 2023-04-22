@@ -19,7 +19,7 @@ body {
     display: flex;
     flex-direction: row;
     width: 100%;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
 }
 
 button:hover {
@@ -66,4 +66,25 @@ button {
 
 .active-button {
     background-color: yellow;
+}
+
+.footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items:center;
+    margin-top: 20px;
+    width: 100%;
+    max-height: 100px;
+}
+
+p {
+    margin-left: 3em;
+}
+
+img {
+    width: 200px; /* width of container */
+    height: 60px; /* height of container */
+    object-fit: cover;
+    object-position: -30px -45px; /* try 20px 10px */ 
 }

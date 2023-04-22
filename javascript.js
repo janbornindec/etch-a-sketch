@@ -57,6 +57,7 @@ function generatePad() {
     //set to classic mode by default
     startMode('classic');
     changeMode();
+    blankListener();
 };
 
 //generate new pad if button clicked
@@ -88,11 +89,24 @@ function startMode(mode) {
             } else if (mode === 'disco') {
                 e.target.style.backgroundColor = randomRgb(); 
                 e.target.style.opacity = 1;
-            } else if (mode === 'erase') {
+            } else if (mode === 'eraser') {
                 e.target.opacity = 0;
                 e.target.style.backgroundColor = 'rgb(255,255,255)';
             };
         });
+    });
+};
+
+function blankListener() {
+    const blank = document.querySelector('.blank');
+    blank.addEventListener('click',blankPad);
+};
+
+function blankPad() {
+    const squares = document.querySelectorAll('.squares');
+    squares.forEach((square) => {
+        square.style.backgroundColor = '';
+        square.count = 0;
     });
 };
 
@@ -119,8 +133,8 @@ function changeMode() {
             } else if (button.classList.contains('disco')) {
                 startMode('disco');
                 selectButton(button);
-            } else if (button.classList.contains('erase')) {
-                startMode('erase');
+            } else if (button.classList.contains('eraser')) {
+                startMode('eraser');
                 selectButton(button);
             };
         });
@@ -130,6 +144,7 @@ function changeMode() {
 //display when page loads
 function displayOn() {
     generateGrid();
+    blankListener();
     startMode('classic');
     changeMode();
 };

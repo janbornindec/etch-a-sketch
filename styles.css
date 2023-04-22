@@ -22,10 +22,10 @@ body {
     margin-bottom: 40px;
 }
 
-.mid {
+.second {
     display: flex;
     gap: 15px;
-    justify-content: center;
+    justify-content: right;
     flex: 2;
 }
 
@@ -58,4 +58,8 @@ button {
 
 .squares {
     flex-grow: 1;
+}
+
+.active-button {
+    background-color: yellow;
 }

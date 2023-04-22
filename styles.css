@@ -22,6 +22,10 @@ body {
     margin-bottom: 40px;
 }
 
+button:hover {
+    background-color: yellow;
+}
+
 .second {
     display: flex;
     gap: 15px;

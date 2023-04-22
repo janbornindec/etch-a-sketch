@@ -54,7 +54,6 @@ function generatePad() {
 
     startMode('classic');
     changeMode();
-    eraseListener();
 };
 
 //get random rgb color
@@ -70,9 +69,8 @@ function startMode(mode) {
     const squares = document.querySelectorAll('.squares');
 
     squares.forEach((square) => {
-        const item = square;
-        item.count = 0;
-        item.addEventListener('mouseover',(e) => {
+        square.count = 0;
+        square.addEventListener('mouseover',(e) => {
             if (mode === 'classic') {
                 e.target.style.backgroundColor = 'rgb(50,50,50)'; 
                 e.target.count += 1;
@@ -83,48 +81,44 @@ function startMode(mode) {
             } else if (mode === 'disco') {
                 e.target.style.backgroundColor = randomRgb(); 
                 e.target.style.opacity = 1;
+            } else if (mode === 'erase') {
+                e.target.opacity = 0;
+                e.target.style.backgroundColor = 'rgb(255,255,255)';
             };
         });
     });
 };
 
-//use selected buttons to trigger colour mode
+//use selected buttons to change paint colour and button color
 const modeButtons = document.querySelectorAll('.modes')
 
+function selectButton(button) {
+    modeButtons.forEach((button) => {
+        button.classList.remove('active-button');
+    });
+    button.classList.add('active-button');
+};
+
 function changeMode() {
+    modeButtons[0].classList.add('active-button');
+
     modeButtons.forEach((button) => {
         button.addEventListener('click', () => {
             if (button.classList.contains('classic')) {
                 startMode('classic');
+                selectButton(button);
             } else if (button.classList.contains('mono')) {
                 startMode('mono');
+                selectButton(button);
             } else if (button.classList.contains('disco')) {
                 startMode('disco');
+                selectButton(button);
+            } else if (button.classList.contains('erase')) {
+                startMode('erase');
+                selectButton(button);
             };
         });
     });
-};
-
-
-//erase function
-function erase() {
-    const squares = document.querySelectorAll('.squares');
-
-    squares.forEach((square) => {
-        const item = square;
-        item.addEventListener('mouseover',(e) => {
-            e.target.count = 0;
-            e.target.style.backgroundColor = 'rgb(255,255,255)';
-            e.target.count = 0;
-            e.target.style.opacity = 1;
-        });
-    });
-};  
-
-//click erase button to trigger func
-function eraseListener() {
-    const eraseBtn = document.querySelector('.erase')
-    eraseBtn.addEventListener('click',erase);
 };
 
 //display when page loads
@@ -132,7 +126,6 @@ function displayOn() {
     generateGrid();
     startMode('classic');
     changeMode();
-    eraseListener();
 };
 
 //default display on 

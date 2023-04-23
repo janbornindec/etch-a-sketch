@@ -80,22 +80,23 @@ function startMode(mode) {
         square.count = 0;
         square.addEventListener('mouseover',(e) => {
             if (mode === 'classic') {
-                e.target.style.backgroundColor = 'rgb(50,50,50)'; 
                 e.target.count += 1;
-                e.target.style.opacity = 0.2 * e.target.count;
-            } else if (mode === 'mono'){
                 e.target.style.backgroundColor = 'rgb(50,50,50)'; 
+                e.target.style.opacity = 0.2 * e.target.count;
+            } else if (mode === 'mono') {
+                e.target.style.backgroundColor = 'rgba(32, 32, 32, 0.8)'; 
                 e.target.style.opacity = 1;
             } else if (mode === 'disco') {
                 e.target.style.backgroundColor = randomRgb(); 
                 e.target.style.opacity = 1;
             } else if (mode === 'eraser') {
-                e.target.opacity = 0;
-                e.target.style.backgroundColor = 'rgb(255,255,255)';
+                e.target.style.opacity = 0;
+                e.target.style.backgroundColor = '';
             };
         });
     });
 };
+
 
 //trigger blankPad func
 function blankListener() {
@@ -103,16 +104,17 @@ function blankListener() {
     blank.addEventListener('click',blankPad);
 };
 
-//wipe out all colours on pad
+//wipe out all colors on pad
 function blankPad() {
     const squares = document.querySelectorAll('.squares');
     squares.forEach((square) => {
         square.style.backgroundColor = '';
+        square.style.opacity = 0;
         square.count = 0;
     });
 };
 
-//use selected buttons to change paint colour and button color
+//use selected buttons to change paint color and button color
 
 function selectButton(button) {
     modeButtons.forEach((button) => {
@@ -123,7 +125,6 @@ function selectButton(button) {
 
 function changeMode() {
     modeButtons[0].classList.add('active-button');
-
     modeButtons.forEach((button) => {
         button.addEventListener('click', () => {
             if (button.classList.contains('classic')) {

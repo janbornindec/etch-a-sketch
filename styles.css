@@ -38,7 +38,7 @@ body {
 }
 
 button:hover {
-    background-color: yellow;
+    background-color: rgb(255, 235, 16);
 }
 
 .first {
@@ -58,12 +58,13 @@ button {
     font-size: 10px;
     border-radius: 3em;
     padding: 1em;
+    background-color: rgb(204, 204, 204);
     box-shadow: 1px 2px 2px #000000;
 }
 
 .container {
-    background-color: white;
-    display: flex;
+    background-color: rgb(140, 140, 140);
+    display: flex;  
     justify-content: space-evenly;
     flex-direction: column;
     margin: 0;
@@ -89,7 +90,7 @@ button {
 }
 
 .active-button {
-    background-color: yellow;
+    background-color: rgb(255, 235, 16);
 }
 
 .footer {

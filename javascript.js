@@ -25,7 +25,7 @@ let rowNum;
 function getNum() {
     do {
         squareNum = prompt("Enter a number from 1 to 100 for sketch pad's size. E.g. 16 for a 16x16 pad: ");
-    }   while (isNaN(squareNum) || squareNum > 100);    
+    }   while (isNaN(squareNum) || squareNum <= 0 || squareNum > 100);
 };
 
 function generatePad() {

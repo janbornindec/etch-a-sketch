@@ -105,13 +105,13 @@ button {
 
 p {
     margin-left: 3em;
-    margin-right: 1em;
+    margin-right: 10px;
 }
 
 img {
     display: flex;
-    width: 200px; /* width of container */
+    scale: 80%;
+    width: 130px; /* width of container */
     height: 60px; /* height of container */
-    object-fit: cover;
-    object-position: -50px;
+    object-fit: auto;
 }

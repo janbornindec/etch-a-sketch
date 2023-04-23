@@ -9,8 +9,8 @@ h1 {
 }
 
 body {
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -22,17 +22,23 @@ body {
 
 .sketch-pad {
     display: flex;
+    height: 40%;
+    width: 60%;
+    flex-grow: 1;
     flex-direction: column;
     align-items: center;
     background-color: rgb(176, 30, 30);
-    border-radius: 4em;
-    padding: 3em;
+    border-radius: 3em;
+    padding: 2em;
     box-shadow: 1px 5px 5px 5px #424242;
 }
 
 .buttons {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 30px;
     width: 100%;
     margin-bottom: 30px;
 }
@@ -41,16 +47,12 @@ button:hover {
     background-color: rgb(255, 235, 16);
 }
 
-.first {
-    display: flex;
-    gap: 10px;
-}
-
+.first,
 .second {
     display: flex;
-    gap: 10px;
-    justify-content: right;
-    flex: 2;
+    flex-wrap: wrap;
+    text-align: left;
+    gap: 5px;
 }
 
 button {
@@ -68,11 +70,8 @@ button {
     justify-content: space-evenly;
     flex-direction: column;
     margin: 0;
-    /*set fixed width and height*/
-    width: 760px;
-    max-width: 760px;
-    height: 450px;
-    max-height: 450px;
+    width: 100%;
+    height: 100%;
     border: 3px solid black;
 }
 
@@ -106,11 +105,13 @@ button {
 
 p {
     margin-left: 3em;
+    margin-right: 1em;
 }
 
 img {
+    display: flex;
     width: 200px; /* width of container */
     height: 60px; /* height of container */
     object-fit: cover;
-    object-position: -30px -45px; /* try 20px 10px */ 
+    object-position: -50px;
 }

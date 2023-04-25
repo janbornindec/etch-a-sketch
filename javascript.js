@@ -72,6 +72,12 @@ function randomRgb() {
     return "rgb(" + r + "," + g + "," + b + ")";
 }
 
+//console log target count to debug
+let classic = [];
+let mono = [];
+let disco = [];
+let eraser = [];
+
 //start painting in the chosen mode
 function startMode(mode) {
     const squares = document.querySelectorAll('.squares');
@@ -80,23 +86,33 @@ function startMode(mode) {
         square.count = 0;
         square.addEventListener('mouseover',(e) => {
             if (mode === 'classic') {
+                /*classic.push(e.target.count);
+                console.log("Classic count:" + classic);*/
                 e.target.count += 1;
                 e.target.style.backgroundColor = 'rgb(50,50,50)'; 
-                e.target.style.opacity = 0.2 * e.target.count;
+                e.target.style.opacity = 0.1 * e.target.count;
             } else if (mode === 'mono') {
+                /*mono.push(e.target.count);
+                console.log("Mono count:" + mono);*/
+                e.target.count -= 1;
                 e.target.style.backgroundColor = 'rgba(32, 32, 32, 0.8)'; 
                 e.target.style.opacity = 1;
             } else if (mode === 'disco') {
+                /*disco.push(e.target.count);
+                console.log("Disco count:" + disco);*/
+                e.target.count -= 1;
                 e.target.style.backgroundColor = randomRgb(); 
                 e.target.style.opacity = 1;
             } else if (mode === 'eraser') {
+                /*eraser.push("Eraser count:" + e.target.count);
+                console.log(eraser);*/
+                e.target.count -= 1;
                 e.target.style.opacity = 0;
                 e.target.style.backgroundColor = '';
             };
         });
     });
 };
-
 
 //trigger blankPad func
 function blankListener() {
@@ -124,7 +140,6 @@ function selectButton(button) {
 };
 
 function changeMode() {
-    modeButtons[0].classList.add('active-button');
     modeButtons.forEach((button) => {
         button.addEventListener('click', () => {
             if (button.classList.contains('classic')) {
@@ -149,6 +164,7 @@ function displayOn() {
     generateGrid();
     blankListener();
     startMode('classic');
+    modeButtons[0].classList.add('active-button')
     changeMode();
 };
 

@@ -22,4 +22,3 @@ Details:
 - It works well until user switches to other painting mode and switch back to classic mode.
 - The target's opacity starts higher each time user makes the switch.
 - Tried to debug by using console.log(e.target.count) and it seems like the count adds up on other mode as well
--

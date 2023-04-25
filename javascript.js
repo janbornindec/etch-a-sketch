@@ -90,6 +90,7 @@ function startMode(mode) {
                 console.log("Classic count:" + classic);*/
                 e.target.count += 1;
                 e.target.style.backgroundColor = 'rgb(50,50,50)'; 
+                //turns black after 10 passes
                 e.target.style.opacity = 0.1 * e.target.count;
             } else if (mode === 'mono') {
                 /*mono.push(e.target.count);
